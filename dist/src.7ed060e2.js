@@ -28451,7 +28451,7 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var currentTemp = '20';
+      var currentTemp = 'Enter a location';
 
       if (this.state.data.list) {
         currentTemp = this.state.data.list[0].main.temp;
@@ -28470,7 +28470,10 @@ var App = /*#__PURE__*/function (_React$Component) {
         className: "temp"
       }, currentTemp), _react.default.createElement("span", {
         className: "temp-symbol"
-      }, "\xB0C")));
+      }, "\xB0C")), _react.default.createElement("div", {
+        id: "tester",
+        style: "width:600px;height:250px;"
+      }));
     }
   }]);
 
@@ -28518,7 +28521,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53995" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49622" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
