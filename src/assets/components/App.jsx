@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/App.css';
 import Plot from 'react-plotly.js';
+import WeatherIcon from 'react-icons-weather';
 
 // This is my key, you should use the one OpenWeather gave you.
 const API_KEY = '8c23032f9b714c0585a2f4716b16faa8';
@@ -13,10 +14,7 @@ export default class App extends React.Component {
       data: {},
       dates: [],
       temps: [],
-      selected: {
-        date: '',
-        temp: null
-      }
+      selected: { id: '', date: '', temp: null }
     };
     this.fetchData = this.fetchData.bind(this);
     this.changeLocation = this.changeLocation.bind(this);
@@ -26,10 +24,10 @@ export default class App extends React.Component {
   fetchData(e) {
     e.preventDefault();
 
-    let location = encodeURIComponent(this.state.location);
-    let urlPrefix = 'http://api.openweathermap.org/data/2.5/forecast?q=';
-    let urlSuffix = '&APPID=' + API_KEY + '&units=metric';
-    let url = urlPrefix + location + urlSuffix;
+    const location = encodeURIComponent(this.state.location);
+    const urlPrefix = 'http://api.openweathermap.org/data/2.5/forecast?q=';
+    const urlSuffix = '&APPID=' + API_KEY + '&units=metric';
+    const url = urlPrefix + location + urlSuffix;
 
     fetch(url)
       .then((response) => {
@@ -40,10 +38,15 @@ export default class App extends React.Component {
         const dates = list.map((item) => {
           return item.dt_txt;
         });
-        let temps = list.map((item) => {
+        const temps = list.map((item) => {
           return item.main.temp;
         });
-        this.setState({ data: data, dates: dates, temps: temps });
+        this.setState({
+          data: data,
+          dates: dates,
+          temps: temps,
+          selected: { id: '', date: '', temp: null }
+        });
       });
   }
 
@@ -55,8 +58,10 @@ export default class App extends React.Component {
 
   // The eventData is special, it is returned by the use of plotly_click from plotly.js
   onPlotClick(eventData) {
+    console.log(eventData.points[0].pointIndex);
     this.setState({
       selected: {
+        id: eventData.points[0].pointIndex,
         date: eventData.points[0].x,
         temp: eventData.points[0].y
       }
@@ -65,7 +70,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <h1>Weather</h1>
         <form onSubmit={this.fetchData}>
           <label>
@@ -80,7 +85,7 @@ export default class App extends React.Component {
         </form>
         {/* Render the the forecast graph when the data is fetch */}
         {this.state.data.list ? (
-          <div className="wrapper">
+          <section>
             {/* Render 'Enter a location' if no specific location is set, else render the current or selected temp*/}
             <p className="temp-wrapper">
               <span className="temp">
@@ -91,6 +96,18 @@ export default class App extends React.Component {
                   : 'Enter a location'}
               </span>
               <span className="temp-symbol">°C</span>
+              <span className="temp-weather">
+                <WeatherIcon
+                  name={'owm'}
+                  iconId={String(
+                    this.state.selected.id
+                      ? this.state.data.list[this.state.selected.id].weather[0]
+                          .id
+                      : this.state.data.list[0].weather[0].id
+                  )}
+                />
+              </span>
+
               <span className="temp-date">
                 {this.state.selected.temp ? this.state.selected.date : ''}
               </span>
@@ -121,7 +138,7 @@ export default class App extends React.Component {
               style={{ display: 'block' }}
               onClick={this.onPlotClick}
             />
-          </div>
+          </section>
         ) : null}
       </div>
     );

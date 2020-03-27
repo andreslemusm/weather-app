@@ -21,13 +21,22 @@ input {
 }
 
 .wrapper {
+  height: 1vh;
   max-width: 680px;
   margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
 }
 
 .temp-wrapper {
   text-align: center;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .temp {
@@ -35,9 +44,7 @@ input {
 }
 
 .temp-symbol {
-  position: absolute;
-  top: 13px;
-  margin-left: 4px;
+  align-self: flex-start;
 }
 
 .temp-date {
@@ -46,4 +53,9 @@ input {
   left: 50%;
   transform: translateX(-50%);
   color: rgba(0, 0, 0, 0.5);
+}
+
+.temp-weather {
+  display: block;
+  font-size: 4rem;
 }

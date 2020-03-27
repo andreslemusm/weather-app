@@ -4,7 +4,8 @@
   "description": "A weather app",
   "main": "index.js",
   "scripts": {
-    "start": "parcel public/index.html"
+    "start": "parcel public/index.html",
+    "build": "rm -rf dist && parcel build public/index.html --public-url ./"
   },
   "author": "Andres Lemus",
   "license": "ISC",
@@ -12,6 +13,7 @@
     "plotly.js": "^1.52.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-icons-weather": "^1.0.5",
     "react-plotly.js": "^2.4.0"
   },
   "devDependencies": {
