@@ -4,7 +4,7 @@ import Plot from 'react-plotly.js';
 import WeatherIcon from 'react-icons-weather';
 
 // This is my key, you should use the one OpenWeather gave you.
-const API_KEY = '8c23032f9b714c0585a2f4716b16faa8';
+const API_KEY = '';
 
 export default class App extends React.Component {
   constructor() {
