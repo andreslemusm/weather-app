@@ -1,6 +1,6 @@
 # Weather App
 
-A single page application to know to weather: [Visit](https://andresclm.github.io/bookify/dist/index.html)
+A single page application to know to weather: [Visit](https://andresclm.github.io/weather-app/dist/index.html)
 
 # Training
 
