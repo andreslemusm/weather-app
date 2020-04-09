@@ -59,7 +59,6 @@ export default class App extends React.Component {
 
   // The eventData is special, it is returned by the use of plotly_click from plotly.js
   onPlotClick(eventData) {
-    console.log(eventData.points[0].pointIndex);
     this.setState({
       selected: {
         id: eventData.points[0].pointIndex,
