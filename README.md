@@ -1,12 +1,12 @@
 # Weather App
 
-A single page application to know to weather:
+A single page application to know to weather: [Visit](https://andresclm.github.io/weather-app/dist/)
 
 # Training
 
 - React:
   - Components
-  - Lifting State Up
+  - State
   - Forms
   - Conditional Rendering
   - [React Weather Icons](https://github.com/williamsb/react-weather-icons)
