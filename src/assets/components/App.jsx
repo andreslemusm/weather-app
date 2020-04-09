@@ -14,7 +14,7 @@ export default class App extends React.Component {
       data: {},
       dates: [],
       temps: [],
-      selected: { id: '', date: '', temp: null }
+      selected: { id: '', date: '', temp: null },
     };
     this.fetchData = this.fetchData.bind(this);
     this.changeLocation = this.changeLocation.bind(this);
@@ -25,7 +25,8 @@ export default class App extends React.Component {
     e.preventDefault();
 
     const location = encodeURIComponent(this.state.location);
-    const urlPrefix = 'http://api.openweathermap.org/data/2.5/forecast?q=';
+    const urlPrefix =
+      'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast?q=';
     const urlSuffix = '&APPID=' + API_KEY + '&units=metric';
     const url = urlPrefix + location + urlSuffix;
 
@@ -45,14 +46,14 @@ export default class App extends React.Component {
           data: data,
           dates: dates,
           temps: temps,
-          selected: { id: '', date: '', temp: null }
+          selected: { id: '', date: '', temp: null },
         });
       });
   }
 
   changeLocation(e) {
     this.setState({
-      location: e.target.value
+      location: e.target.value,
     });
   }
 
@@ -63,8 +64,8 @@ export default class App extends React.Component {
       selected: {
         id: eventData.points[0].pointIndex,
         date: eventData.points[0].x,
-        temp: eventData.points[0].y
-      }
+        temp: eventData.points[0].y,
+      },
     });
   }
 
@@ -119,21 +120,21 @@ export default class App extends React.Component {
                 {
                   x: this.state.dates,
                   y: this.state.temps,
-                  type: 'scatter'
-                }
+                  type: 'scatter',
+                },
               ]}
               layout={{
                 margin: {
                   t: 0,
                   r: 0,
-                  l: 30
+                  l: 30,
                 },
                 xaxis: {
-                  gridcolor: 'transparent'
-                }
+                  gridcolor: 'transparent',
+                },
               }}
               config={{
-                displayModeBar: false
+                displayModeBar: false,
               }}
               style={{ display: 'block' }}
               onClick={this.onPlotClick}
