@@ -1,6 +1,6 @@
 # Weather App
 
-A single page application to know to weather: [Visit](https://andresclm.github.io/weather-app/dist/)
+A SPA for looking the current weather, temperature and 5 days forecast in any city that you want: [Visit](https://andresclm.github.io/weather-app/dist/)
 
 # Training
 
